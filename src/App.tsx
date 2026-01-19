@@ -50,7 +50,7 @@ export default function App() {
         <div className="footer-counter">
           <span>Visits</span>
           <img
-            src="https://solanaspin.goatcounter.com/counter.svg"
+            src="https://solanaspin.goatcounter.com/count?p=/"
             alt="Visit counter"
             loading="lazy"
           />
