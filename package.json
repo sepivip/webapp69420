@@ -1,0 +1,28 @@
+{
+  "name": "solana-spin",
+  "version": "1.0.0",
+  "description": "Read-only slot machine Solana address explorer - for education and entertainment",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.87.6",
+    "bip39": "^3.1.0",
+    "bs58": "^5.0.0",
+    "buffer": "^6.0.3",
+    "canvas-confetti": "^1.9.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/canvas-confetti": "^1.6.4",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "@vitejs/plugin-react": "^4.2.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10"
+  }
+}
