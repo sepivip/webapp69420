@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0e17"/>
+      <stop offset="50%" style="stop-color:#0d1220"/>
+      <stop offset="100%" style="stop-color:#080c14"/>
+    </linearGradient>
+    <filter id="glow-cyan" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-pink" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-yellow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Grid lines for cyberpunk effect -->
+  <g stroke="rgba(51, 242, 255, 0.1)" stroke-width="1">
+    <line x1="0" y1="157" x2="1200" y2="157"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="473" x2="1200" y2="473"/>
+    <line x1="300" y1="0" x2="300" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="900" y1="0" x2="900" y2="630"/>
+  </g>
+
+  <!-- Decorative corner accents -->
+  <path d="M50 50 L50 100 M50 50 L100 50" stroke="#33f2ff" stroke-width="3" fill="none" opacity="0.6"/>
+  <path d="M1150 50 L1150 100 M1150 50 L1100 50" stroke="#33f2ff" stroke-width="3" fill="none" opacity="0.6"/>
+  <path d="M50 580 L50 530 M50 580 L100 580" stroke="#ff2bd6" stroke-width="3" fill="none" opacity="0.6"/>
+  <path d="M1150 580 L1150 530 M1150 580 L1100 580" stroke="#ff2bd6" stroke-width="3" fill="none" opacity="0.6"/>
+
+  <!-- Slot machine reels -->
+  <g transform="translate(600, 165)">
+    <!-- Reel containers -->
+    <rect x="-150" y="-50" width="80" height="100" rx="8" fill="none" stroke="#33f2ff" stroke-width="2" filter="url(#glow-cyan)"/>
+    <rect x="-40" y="-50" width="80" height="100" rx="8" fill="none" stroke="#ff2bd6" stroke-width="2" filter="url(#glow-pink)"/>
+    <rect x="70" y="-50" width="80" height="100" rx="8" fill="none" stroke="#ffd34a" stroke-width="2" filter="url(#glow-yellow)"/>
+
+    <!-- Symbols in reels -->
+    <text x="-110" y="15" text-anchor="middle" font-family="system-ui, sans-serif" font-size="48" fill="#33f2ff">S</text>
+    <text x="0" y="15" text-anchor="middle" font-family="system-ui, sans-serif" font-size="48" fill="#ff2bd6">O</text>
+    <text x="110" y="15" text-anchor="middle" font-family="system-ui, sans-serif" font-size="48" fill="#ffd34a">L</text>
+  </g>
+
+  <!-- Main title -->
+  <text x="600" y="340" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="bold" fill="#33f2ff" filter="url(#glow-cyan)">
+    solanaspin.yachts
+  </text>
+
+  <!-- Subtitle -->
+  <text x="600" y="420" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="36" fill="#ff2bd6" filter="url(#glow-pink)" letter-spacing="8">
+    BLOCKCHAIN EXPERIMENT
+  </text>
+
+  <!-- Bottom accent line -->
+  <rect x="400" y="480" width="400" height="2" fill="#33f2ff" opacity="0.5"/>
+
+  <!-- Solana branding hint -->
+  <text x="600" y="540" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="rgba(255,255,255,0.4)" letter-spacing="2">
+    POWERED BY SOLANA
+  </text>
+</svg>
