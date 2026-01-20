@@ -11,6 +11,7 @@ import confetti from 'canvas-confetti';
 import { generateMnemonic, derivePublicAddress } from '../utils/addressGenerator';
 import { getBalance, formatBalance } from '../utils/solana';
 import { useRateLimit } from '../hooks/useRateLimit';
+import { useTelegram } from '../hooks/useTelegram';
 import type { SpinState, SpinResult, GameStats } from '../types';
 
 // Base58 characters for slot animation
@@ -52,6 +53,7 @@ export function SlotMachine({ onStatsUpdate }: SlotMachineProps) {
   const [currentMnemonic, setCurrentMnemonic] = useState<string[]>([]);
 
   const { canSpin, cooldownRemaining, spinsRemaining, maxSpinsPerMinute, trySpin } = useRateLimit();
+  const { haptic } = useTelegram();
 
   const animationRef = useRef<number | null>(null);
   const revealTimeoutRef = useRef<number | null>(null);
@@ -133,6 +135,9 @@ export function SlotMachine({ onStatsUpdate }: SlotMachineProps) {
     setResult(null);
     setCurrentMnemonic([]);
 
+    // Haptic feedback on spin start (Telegram only)
+    haptic('impact', 'medium');
+
     // Generate a derived public address (NO private key!)
     const mnemonic = generateMnemonic();
     setCurrentMnemonic(mnemonic);
@@ -171,16 +176,17 @@ export function SlotMachine({ onStatsUpdate }: SlotMachineProps) {
           return newStats;
         });
 
-        // Fire confetti on win!
+        // Fire confetti and haptic on win!
         if (hasBalance) {
           fireConfetti();
+          haptic('notification'); // Success vibration
         }
       } catch (error) {
         console.error('Error checking balance:', error);
         setSpinState('idle');
       }
     }, 2200);
-  }, [canSpin, spinState, trySpin, animateSlots, fireConfetti, onStatsUpdate]);
+  }, [canSpin, spinState, trySpin, animateSlots, fireConfetti, haptic, onStatsUpdate]);
 
   // Reset to idle state
   const handleReset = useCallback(() => {

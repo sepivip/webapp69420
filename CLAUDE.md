@@ -12,6 +12,7 @@ SolanaSpin is a read-only slot machine-style Solana address explorer for educati
 
 - **React 18** + **TypeScript 5** + **Vite 5**
 - **@solana/web3.js** - Solana RPC client (read-only balance queries)
+- **@twa-dev/sdk** - Telegram Mini App SDK
 - **bip39** - BIP39 mnemonic generation
 - **bs58** - Base58 encoding for Solana addresses
 - **canvas-confetti** - Celebration animations
@@ -29,19 +30,21 @@ npm run preview  # Preview production build locally
 ```
 src/
 ├── main.tsx                  # Entry point, Buffer polyfill
-├── App.tsx                   # Main layout (header, footer)
+├── App.tsx                   # Main layout, platform detection
 ├── components/
 │   ├── SlotMachine.tsx       # Core slot machine UI and logic
 │   └── Disclaimer.tsx        # Read-only disclaimer notice
 ├── hooks/
-│   └── useRateLimit.ts       # Rate limiting (10 spins/min, 3s cooldown)
+│   ├── useRateLimit.ts       # Rate limiting (10 spins/min, 3s cooldown)
+│   └── useTelegram.ts        # Telegram Mini App React hook
 ├── utils/
 │   ├── addressGenerator.ts   # Address generation (BIP39/ED25519)
-│   └── solana.ts             # Read-only RPC utilities
+│   ├── solana.ts             # Read-only RPC utilities
+│   └── telegram.ts           # Telegram SDK wrapper
 ├── types/
 │   └── index.ts              # TypeScript interfaces
 └── styles/
-    └── App.css               # Cyberpunk neon styling
+    └── App.css               # Cyberpunk neon styling + Telegram styles
 ```
 
 ## Key Architecture Decisions
@@ -91,3 +94,21 @@ src/
 - GitHub Actions workflow in `.github/workflows/deploy.yml`
 - Auto-deploys to GitHub Pages on push to `main`
 - Build output: `dist/`
+
+## Telegram Mini App
+
+The app supports Telegram Mini App (TWA) via runtime detection:
+
+- **Detection**: `useTelegram()` hook detects Telegram environment
+- **UI Changes**: Header/footer hidden in Telegram (Telegram provides chrome)
+- **Haptic Feedback**: Vibration on spin start and win
+- **Same Build**: Single codebase, no separate builds needed
+
+### Telegram-specific files
+- `src/utils/telegram.ts` - SDK wrapper functions
+- `src/hooks/useTelegram.ts` - React hook for Telegram features
+
+### To set up Telegram bot
+1. Create bot via @BotFather
+2. Use `/newapp` to create Mini App
+3. Set Web App URL to deployed site (e.g., https://solanaspin.yachts)

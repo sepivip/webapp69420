@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@solana/web3.js": "^1.87.6",
+    "@twa-dev/sdk": "^8.0.2",
     "bip39": "^3.1.0",
     "bs58": "^5.0.0",
     "buffer": "^6.0.3",
