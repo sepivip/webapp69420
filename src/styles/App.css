@@ -794,7 +794,7 @@ body::before {
 /* Telegram Mini App styles */
 .telegram-app {
   /* Adjust padding for Telegram (no header) */
-  padding-top: 1rem;
+  padding-top: 0.5rem;
 
   /* Use safe area insets for notched devices */
   padding-left: max(1rem, env(safe-area-inset-left));
@@ -805,6 +805,19 @@ body::before {
 .telegram-app .slot-machine {
   /* Slightly more compact in Telegram */
   margin-top: 0;
+}
+
+.telegram-app .slot-header {
+  margin-bottom: 1rem;
+}
+
+.telegram-app .slot-header h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
+}
+
+.telegram-app .slot-header .tagline {
+  font-size: 0.75rem;
 }
 
 .telegram-app .disclaimer {
