@@ -15,6 +15,7 @@ import type { SpinState, SpinResult, GameStats } from '../types';
 
 // Base58 characters for slot animation
 const BASE58_CHARS = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+const STATS_STORAGE_KEY = 'solanaspin.stats';
 const shortenAddress = (address: string, chars: number = 4) => {
   if (address.length <= chars * 2 + 3) {
     return address;
@@ -303,3 +304,26 @@ export function SlotMachine({ onStatsUpdate }: SlotMachineProps) {
     </div>
   );
 }
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(STATS_STORAGE_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw) as Partial<GameStats>;
+      if (typeof parsed.totalSpins === 'number' && typeof parsed.addressesWithBalance === 'number') {
+        setStats({
+          totalSpins: parsed.totalSpins,
+          addressesWithBalance: parsed.addressesWithBalance,
+        });
+      }
+    } catch {
+      // Ignore storage errors.
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(STATS_STORAGE_KEY, JSON.stringify(stats));
+    } catch {
+      // Ignore storage errors.
+    }
+  }, [stats]);
